@@ -16,7 +16,7 @@ enum ImageViewPosition: Int {
     case Back
 }
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UICollectionViewDataSource
 {
     @IBOutlet var originalView: UIView!
     @IBOutlet var frontImageView: UIImageView!
@@ -27,11 +27,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet var bottomMenu: UIView!
 
     @IBOutlet var filterButton: UIButton!
-    @IBOutlet var redFilterButton: UIButton!
-    @IBOutlet var greenFilterButton: UIButton!
-    @IBOutlet var blueFilterButton: UIButton!
-    @IBOutlet var yellowFilterButton: UIButton!
-    @IBOutlet var purpleFilterButton: UIButton!
 
     @IBOutlet var editButton: UIButton!
     @IBOutlet var editSlider: UISlider!
@@ -183,6 +178,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var filters: [PixelFilter]?
     var selectedSecondaryButton: UIButton?
 
+
+    // MARK: UIViewController lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -201,11 +199,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
         let filterImage = UIImage(named: "filter-original")?.imageWithRenderingMode(.AlwaysTemplate)
         self.filterButton.setImage(filterImage, forState: UIControlState.Normal)
-        self.redFilterButton.setImage(filterImage, forState: UIControlState.Normal)
-        self.greenFilterButton.setImage(filterImage, forState: UIControlState.Normal)
-        self.blueFilterButton.setImage(filterImage, forState: UIControlState.Normal)
-        self.yellowFilterButton.setImage(filterImage, forState: UIControlState.Normal)
-        self.purpleFilterButton.setImage(filterImage, forState: UIControlState.Normal)
     }
 
     // MARK: Share
@@ -300,13 +293,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func showSecondaryMenu() {
-        view.addSubview(secondaryMenu)
+        view.addSubview(self.secondaryMenu)
         
-        let bottomConstraint = secondaryMenu.bottomAnchor.constraintEqualToAnchor(bottomMenu.topAnchor)
-        let leftConstraint = secondaryMenu.leftAnchor.constraintEqualToAnchor(view.leftAnchor)
-        let rightConstraint = secondaryMenu.rightAnchor.constraintEqualToAnchor(view.rightAnchor)
+        let bottomConstraint = self.secondaryMenu.bottomAnchor.constraintEqualToAnchor(bottomMenu.topAnchor)
+        let leftConstraint = self.secondaryMenu.leftAnchor.constraintEqualToAnchor(view.leftAnchor)
+        let rightConstraint = self.secondaryMenu.rightAnchor.constraintEqualToAnchor(view.rightAnchor)
         
-        let heightConstraint = secondaryMenu.heightAnchor.constraintEqualToConstant(44)
+        let heightConstraint = self.secondaryMenu.heightAnchor.constraintEqualToConstant(52)
         
         NSLayoutConstraint.activateConstraints([bottomConstraint, leftConstraint, rightConstraint, heightConstraint])
         
@@ -399,6 +392,60 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
         button.selected = true
         self.selectedSecondaryButton = button
+    }
+
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 25
+    }
+
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SecondaryCollectionCellReuseIdentifier", forIndexPath: indexPath)
+
+        let button = UIButton()
+        cell.addSubview(button)
+
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let bottomConstraint = button.bottomAnchor.constraintEqualToAnchor(cell.bottomAnchor)
+        let leftConstraint = button.leftAnchor.constraintEqualToAnchor(cell.leftAnchor)
+        let rightConstraint = button.rightAnchor.constraintEqualToAnchor(cell.rightAnchor)
+        let topConstraint = button.topAnchor.constraintEqualToAnchor(cell.topAnchor)
+        NSLayoutConstraint.activateConstraints([bottomConstraint, leftConstraint, rightConstraint, topConstraint])
+        cell.layoutIfNeeded()
+
+        let filterImage = UIImage(named: "filter-original")?.imageWithRenderingMode(.AlwaysTemplate)
+        button.setImage(filterImage, forState: UIControlState.Normal)
+
+        var tintColor: UIColor?
+        var filterIndex = 0
+        if indexPath.row < 5 {
+            filterIndex = indexPath.row + 1
+            button.tag = filterIndex
+            button.addTarget(self, action: "didSelectFilter:", forControlEvents: UIControlEvents.TouchDown)
+        }
+        let filter = FilterType(rawValue: filterIndex)!
+        switch filter {
+        case .None:
+            tintColor = UIColor.lightGrayColor()
+            break
+        case .Red:
+            tintColor = UIColor.redColor()
+            break
+        case .Green:
+            tintColor = UIColor.greenColor()
+            break
+        case .Blue:
+            tintColor = UIColor.blueColor()
+            break
+        case .Yellow:
+            tintColor = UIColor.yellowColor()
+            break
+        case .Purple:
+            tintColor = UIColor.purpleColor()
+            break
+        }
+        button.tintColor = tintColor!
+
+        return cell
     }
 }
 

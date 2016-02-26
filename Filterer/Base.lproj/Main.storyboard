@@ -129,7 +129,6 @@
                     </view>
                     <connections>
                         <outlet property="backImageView" destination="aND-Em-4Dd" id="ROC-Nl-BXU"/>
-                        <outlet property="blueFilterButton" destination="sNq-be-bSy" id="SDA-UU-6c0"/>
                         <outlet property="bottomMenu" destination="JNF-wb-wwY" id="jTm-2q-PDu"/>
                         <outlet property="compareButton" destination="tPg-2N-f93" id="R1A-eG-Mfw"/>
                         <outlet property="editButton" destination="Cp6-hf-9EG" id="beS-JT-pTV"/>
@@ -137,66 +136,47 @@
                         <outlet property="editSlider" destination="dwK-kD-U8r" id="POR-Bt-CqA"/>
                         <outlet property="filterButton" destination="C6B-1F-j0K" id="6Kf-1q-zun"/>
                         <outlet property="frontImageView" destination="Bxu-HU-3Gg" id="cpQ-1n-on5"/>
-                        <outlet property="greenFilterButton" destination="axt-GK-a6m" id="uMT-F5-Y6q"/>
                         <outlet property="originalView" destination="uNh-sl-lH7" id="gfg-CC-L3V"/>
-                        <outlet property="purpleFilterButton" destination="7P8-VM-YCw" id="EMc-Jt-UNN"/>
-                        <outlet property="redFilterButton" destination="Drk-Kp-614" id="xB1-YX-fjk"/>
                         <outlet property="secondaryMenu" destination="ePS-oG-ZHP" id="Be7-JW-Iwe"/>
-                        <outlet property="yellowFilterButton" destination="zUq-ef-bpc" id="Jrz-aY-poi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="ePS-oG-ZHP">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="125"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="n3M-NR-6VP">
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AVK-uH-jkd">
                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                            <subviews>
-                                <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Drk-Kp-614">
-                                    <rect key="frame" x="0.0" y="0.0" width="48" height="128"/>
-                                    <color key="tintColor" red="0.92156862750000001" green="0.2901960784" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
-                                    <connections>
-                                        <action selector="didSelectFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lbf-Wl-vxU"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="2" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axt-GK-a6m">
-                                    <rect key="frame" x="48" y="0.0" width="48" height="128"/>
-                                    <color key="tintColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <connections>
-                                        <action selector="didSelectFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lWq-LR-nXs"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="3" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNq-be-bSy">
-                                    <rect key="frame" x="96" y="0.0" width="48" height="128"/>
-                                    <color key="tintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <connections>
-                                        <action selector="didSelectFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0hC-iq-ZtZ"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="4" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUq-ef-bpc">
-                                    <rect key="frame" x="144" y="0.0" width="48" height="128"/>
-                                    <color key="tintColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <connections>
-                                        <action selector="didSelectFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="39E-11-dof"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" tag="5" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7P8-VM-YCw">
-                                    <rect key="frame" x="192" y="0.0" width="48" height="128"/>
-                                    <color key="tintColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
-                                    <connections>
-                                        <action selector="didSelectFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VLI-PB-9gS"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                        </stackView>
+                            <color key="backgroundColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="24" minimumInteritemSpacing="0.0" id="yK0-NF-FAc">
+                                <size key="itemSize" width="44" height="44"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="24" minY="0.0" maxX="24" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                            <cells>
+                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SecondaryCollectionCellReuseIdentifier" id="gkT-vB-71X">
+                                    <rect key="frame" x="24" y="0.0" width="44" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </collectionViewCell>
+                            </cells>
+                            <connections>
+                                <outlet property="dataSource" destination="BYZ-38-t0r" id="GpX-f2-3vB"/>
+                                <outlet property="delegate" destination="BYZ-38-t0r" id="KsD-1Z-OyW"/>
+                            </connections>
+                        </collectionView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="n3M-NR-6VP" secondAttribute="trailing" id="23L-58-Mzz"/>
-                        <constraint firstAttribute="bottom" secondItem="n3M-NR-6VP" secondAttribute="bottom" id="IFa-Q5-UOE"/>
-                        <constraint firstItem="n3M-NR-6VP" firstAttribute="top" secondItem="ePS-oG-ZHP" secondAttribute="top" id="ciD-QT-Tl9"/>
-                        <constraint firstItem="n3M-NR-6VP" firstAttribute="leading" secondItem="ePS-oG-ZHP" secondAttribute="leading" id="uEa-cd-VyS"/>
+                        <constraint firstItem="AVK-uH-jkd" firstAttribute="top" secondItem="ePS-oG-ZHP" secondAttribute="top" id="4um-2Y-MwT"/>
+                        <constraint firstAttribute="bottom" secondItem="AVK-uH-jkd" secondAttribute="bottom" id="Ct0-Mi-sUo"/>
+                        <constraint firstAttribute="trailing" secondItem="AVK-uH-jkd" secondAttribute="trailing" id="NEL-P6-xCD"/>
+                        <constraint firstItem="AVK-uH-jkd" firstAttribute="leading" secondItem="ePS-oG-ZHP" secondAttribute="leading" id="x22-Qq-JTe"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" id="64e-g2-zpQ" userLabel="Edit Slider Menu">
